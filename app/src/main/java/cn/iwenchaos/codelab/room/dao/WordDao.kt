@@ -1,5 +1,6 @@
 package cn.iwenchaos.codelab.room.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -15,7 +16,7 @@ import cn.iwenchaos.codelab.room.entity.Word
 interface WordDao {
 
     @Query("select * from word_table order by word asc")
-    fun getAllWords():List<Word>
+    fun getAllWords(): LiveData<List<Word>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(word: Word)
